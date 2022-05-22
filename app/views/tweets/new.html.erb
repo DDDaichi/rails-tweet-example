@@ -1,0 +1,21 @@
+<%# application.html.erbに共通部分を格納 %> 
+ 
+<div class="new-tweet">
+  <%# エラー文を表示 %>
+  <div class="errors">
+    <% @errors.each do |error| %> <%#繰り返し処理でエラー文を全て表示%>
+    <p><%= error %></p>
+    <% end %>
+  </div>
+  <%= form_tag("/tweets/create") do %> <%#送信先のURLにバリデーションのアクション%>
+  <div class="text-wrap">
+    <%# エラーがあった場合value(初期値)に入力した値を保持 %>
+    <input type="text" name="name" placeholder="ユーザー名" value="<%= params[:name] %>"/>
+  </div>
+  <div class="textarea-wrap">
+    <%# エラーがあった場合textareaタグにはvalue値がないので保持する内容をタグで囲む %>
+    <textarea name="tweet" placeholder="つぶやきを140文字以内で記述"><%= params[:tweet] %></textarea>
+  </div>
+  <input type="submit" value="送信" />  
+  <% end %>
+</div>

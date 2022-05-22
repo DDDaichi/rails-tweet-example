@@ -1,0 +1,19 @@
+<div class="new-contact">
+  <div class="errors">
+   <% @errors.each do |error| %>
+   <p><%= error %></p>
+   <% end %>
+  </div>
+  <%= form_tag("/contacts/create") do %>
+    <div class="text-wrap">
+      <input type="text" name="name" placeholder="名前" value="<%= params[:name] %>"/>
+    </div>
+    <div class="email-wrap">
+    <input type="email" name="email" placeholder="メールアドレス" pattern=".+\.[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]"/>
+    </div>
+    <div class="textarea-wrap">
+    <textarea name="contact" placeholder="お問い合わせ内容を500字以内で入力"><%= params[:contact] %></textarea>
+    </div>
+    <input type="submit" value="送信" />
+  <% end %>
+</div>
